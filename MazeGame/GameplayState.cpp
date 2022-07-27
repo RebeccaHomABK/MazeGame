@@ -10,6 +10,7 @@
 #include "Door.h"
 #include "Money.h"
 #include "Goal.h"
+#include "Companion.h"
 #include "AudioManager.h"
 #include "Utility.h"
 #include "StateMachineExampleGame.h"
@@ -221,6 +222,23 @@ void GameplayState::HandleCollision(int newPlayerX, int newPlayerY)
 			collidedGoal->Remove();
 			m_player.SetPosition(newPlayerX, newPlayerY);
 			m_beatLevel = true;
+			break;
+		}
+		case ActorType::Companion:
+		{
+			Companion* collidedCompanion = dynamic_cast<Companion*>(collidedActor);
+			assert(collidedCompanion);
+			
+			if (collidedCompanion->HasGiven())
+			{
+				collidedCompanion->Remove();
+			}
+			else
+			{
+				collidedCompanion->SetPosition(newPlayerX--, newPlayerY);
+				m_player.AddMoney(collidedCompanion->GiveReward());
+			}
+			m_player.SetPosition(newPlayerX, newPlayerY);
 			break;
 		}
 		default:
