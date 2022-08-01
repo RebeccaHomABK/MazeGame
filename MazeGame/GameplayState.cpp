@@ -194,9 +194,10 @@ void GameplayState::HandleCollision(int newPlayerX, int newPlayerY)
 		{
 			Door* collidedDoor = dynamic_cast<Door*>(collidedActor);
 			assert(collidedDoor);
-			if (!collidedDoor->IsOpen())
+			//	Check why the door is opening without or with the improper key
+			if (!collidedDoor->IsOpen())	//	Run if the door is not open
 			{
-				if (m_player.HasKey(collidedDoor->GetColor()))
+				if (m_player.HasKey(collidedDoor->GetColor()))	//	Check what color the door is and if the player has that key
 				{
 					collidedDoor->Open();
 					collidedDoor->Remove();
