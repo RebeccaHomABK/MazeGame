@@ -22,6 +22,13 @@ int Companion::GiveReward()
 	return m_reward;
 }
 
+void Companion::HandleCollision(Player& CollidingActor)
+{
+	this->Remove();
+	CollidingActor.AddMoney(this->GiveReward());
+	CollidingActor.SetPosition(m_pPosition->x, m_pPosition->y);
+}
+
 void Companion::Draw()
 {
 	std::cout << "*";

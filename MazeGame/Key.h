@@ -10,6 +10,7 @@ public:
 	}
 
 	virtual ActorType GetType() override { return ActorType::Key; }
+	void HandleCollision(PlacableActor& CollidingActor);
 	virtual void Draw() override;
 };
 

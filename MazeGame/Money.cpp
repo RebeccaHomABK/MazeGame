@@ -8,6 +8,14 @@ Money::Money(int x, int y, int worth)
 
 }
 
+void Money::HandleCollision(PlacableActor& CollidingActor)
+{
+	AudioManager::GetInstance()->PlayMoneySound();
+	this->Remove();
+	CollidingActor.SetPosition(m_pPosition->x, m_pPosition->y);
+	CollidingActor.AddMoney(m_worth);
+}
+
 void Money::Draw()
 {
 	std::cout << "$";

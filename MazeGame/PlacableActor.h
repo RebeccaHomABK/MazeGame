@@ -1,5 +1,6 @@
 #pragma once
 #include "Point.h"
+#include "AudioManager.h"
 
 enum class ActorColor
 {
@@ -42,6 +43,7 @@ public:
 	void Place(int x, int y);
 
 	virtual ActorType GetType() = 0;
+	virtual void HandleCollision(PlacableActor& CollidedActor) { CollidedActor.SetPosition(m_pPosition->x, m_pPosition->y); }
 	virtual void Draw() = 0;
 	virtual void Update()
 	{

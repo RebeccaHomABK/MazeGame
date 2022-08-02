@@ -3,6 +3,17 @@
 
 #include "Key.h"
 
+void Key::HandleCollision(PlacableActor& CollidingActor)
+{
+	if (!CollidingActor.HasKey())
+	{
+		CollidingActor.PickupKey(this);
+		this->Remove();
+		CollidingActor.SetPosition(m_pPosition->x, m_pPosition->y);
+		AudioManager::GetInstance()->PlayKeyPickupSound();
+	}
+}
+
 void Key::Draw()
 {
 	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);

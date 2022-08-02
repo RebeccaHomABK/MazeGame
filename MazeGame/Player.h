@@ -18,6 +18,7 @@ public:
 	void AddMoney(int money) { m_money += money; }
 	int GetMoney() { return m_money; }
 
+	//	Createa  function OnLoseLive or CollideWithEnemy
 	int GetLives() { return m_lives; }
 	void DecrementLives() { m_lives--; }
 

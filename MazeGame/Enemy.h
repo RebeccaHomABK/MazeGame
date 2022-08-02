@@ -23,6 +23,6 @@ private:
 	int m_directionY;
 
 	void UpdateDirection(int& current, int& direction, int& movement);
-
+	void HandleCollision(PlacableActor& CollidingActor);
 };
 

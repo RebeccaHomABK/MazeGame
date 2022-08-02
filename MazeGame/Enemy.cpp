@@ -54,3 +54,11 @@ void Enemy::UpdateDirection(int& current, int& direction, int& movement)
 	}
 }
 
+
+void Enemy::HandleCollision(PlacableActor& CollidingActor)
+{
+	AudioManager::GetInstance()->PlayLoseLivesSound();
+	this->Remove();
+	CollidingActor.SetPosition(m_pPosition->x, m_pPosition->y);
+	CollidingActor.DecrementLives();
+}

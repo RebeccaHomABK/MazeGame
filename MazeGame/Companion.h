@@ -1,5 +1,6 @@
 #pragma once
 #include "PlacableActor.h"
+#include "Player.h"
 
 class Companion : public PlacableActor
 {
@@ -13,5 +14,6 @@ public:
 	int GiveReward();
 
 	virtual ActorType GetType() override { return ActorType::Companion; }
+	void HandleCollision(Player& CollidingActor);
 	virtual void Draw() override;
 };
